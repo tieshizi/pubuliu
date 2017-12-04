@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item {
+      padding: 5px;
+      border: 1px solid red;
+      float: left;
+      /*浮动是不顾一切的往左浮动，如果放不下了，在往下找位置，直到找到能够放下的为止。*/
+    }
+
+    .item img {
+      width: 192px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<!--.waterfall>(.item>img[src='images/P_0$$.jpg'])*20-->
+<div class="waterfall">
+  <div class="item"><img src="images/P_000.jpg" alt=""></div>
+  <div class="item"><img src="images/P_001.jpg" alt=""></div>
+  <div class="item"><img src="images/P_002.jpg" alt=""></div>
+  <div class="item"><img src="images/P_003.jpg" alt=""></div>
+  <div class="item"><img src="images/P_004.jpg" alt=""></div>
+  <div class="item"><img src="images/P_005.jpg" alt=""></div>
+  <div class="item"><img src="images/P_006.jpg" alt=""></div>
+  <div class="item"><img src="images/P_007.jpg" alt=""></div>
+  <div class="item"><img src="images/P_008.jpg" alt=""></div>
+  <div class="item"><img src="images/P_009.jpg" alt=""></div>
+  <div class="item"><img src="images/P_010.jpg" alt=""></div>
+  <div class="item"><img src="images/P_011.jpg" alt=""></div>
+  <div class="item"><img src="images/P_012.jpg" alt=""></div>
+  <div class="item"><img src="images/P_013.jpg" alt=""></div>
+  <div class="item"><img src="images/P_014.jpg" alt=""></div>
+  <div class="item"><img src="images/P_015.jpg" alt=""></div>
+  <div class="item"><img src="images/P_016.jpg" alt=""></div>
+  <div class="item"><img src="images/P_017.jpg" alt=""></div>
+  <div class="item"><img src="images/P_018.jpg" alt=""></div>
+  <div class="item"><img src="images/P_019.jpg" alt=""></div>
+  <div class="item"><img src="images/P_020.jpg" alt=""></div>
+</div>
+
+<script>
+
+  //图片等宽不等高 （定死宽度，高度自适应）
+  //到页面滑动到一定距离的时候，需要动态的加载图片。
+
+
+
+  //1. 先确定好一行能放几张图片    可视区宽度/盒子的宽度 向下取整
+
+
+  //2. 摆好第一行 （top:0   left:index * itemWidth）
+      //使用一个数组把每个人的高度存起来。
+
+  //3. 摆放其他的盒子
+      //left top
+      //找到最小的盒子。left:最小盒子的left  top:最小的高：
+      //给数组最小值需要加上新增加的这个盒子的高度。
+
+
+  //4. 如果窗口的大小改变，需要重新布局
+
+
+
+  //5. 如果窗口发生了滚动，当最后一张图片出现的时候，需要动态的添加图片
+</script>
+</body>
+</html>

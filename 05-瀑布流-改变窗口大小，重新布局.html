@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item {
+      padding: 5px;
+      border: 1px solid red;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 1s;
+    }
+
+    .item img {
+      width: 192px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="waterfall">
+  <div class="item"><img src="images/P_000.jpg" alt=""></div>
+  <div class="item"><img src="images/P_001.jpg" alt=""></div>
+  <div class="item"><img src="images/P_002.jpg" alt=""></div>
+  <div class="item"><img src="images/P_003.jpg" alt=""></div>
+  <div class="item"><img src="images/P_004.jpg" alt=""></div>
+  <div class="item"><img src="images/P_005.jpg" alt=""></div>
+  <div class="item"><img src="images/P_006.jpg" alt=""></div>
+  <div class="item"><img src="images/P_007.jpg" alt=""></div>
+  <div class="item"><img src="images/P_008.jpg" alt=""></div>
+  <div class="item"><img src="images/P_009.jpg" alt=""></div>
+  <div class="item"><img src="images/P_010.jpg" alt=""></div>
+  <div class="item"><img src="images/P_011.jpg" alt=""></div>
+  <div class="item"><img src="images/P_012.jpg" alt=""></div>
+  <div class="item"><img src="images/P_013.jpg" alt=""></div>
+  <div class="item"><img src="images/P_014.jpg" alt=""></div>
+  <div class="item"><img src="images/P_015.jpg" alt=""></div>
+  <div class="item"><img src="images/P_016.jpg" alt=""></div>
+  <div class="item"><img src="images/P_017.jpg" alt=""></div>
+  <div class="item"><img src="images/P_018.jpg" alt=""></div>
+  <div class="item"><img src="images/P_019.jpg" alt=""></div>
+  <div class="item"><img src="images/P_020.jpg" alt=""></div>
+</div>
+
+<script>
+
+  //等待图片加载
+  window.onload = function () {
+    var items = document.querySelectorAll(".item");
+
+    function render() {
+      //1. 获取窗口的宽度
+      var pageWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0;
+      //2. 获取盒子的大小
+      var itemWidth = items[0].offsetWidth;
+      var gap = 10;
+
+      //3. 确定多少列
+      var cols = parseInt(pageWidth / (itemWidth + gap));
+
+
+      //摆放第一行
+      //定义一个数组，用于存放每一列的高度
+      var arr = [];
+      for (var i = 0; i < cols; i++) {
+        items[i].style.top = 0;//设置top
+        items[i].style.left = i * (itemWidth + gap) + "px";
+        //存高度
+        arr.push(items[i].offsetHeight);
+      }
+
+      //摆放其他的盒子
+      for(var i = cols; i < items.length; i++){
+
+        //1. 找到最小的盒子所在的列，找数组的最小值
+        var min = arr[0];
+        var index = 0;
+        for(var j = 0; j < arr.length; j++){
+          if(min > arr[j]){
+            min = arr[j];
+            index = j;
+          }
+        }
+        console.log(min);
+        console.log(index);
+
+
+        //2. 设置这个盒子left值  最小的列 * 盒子的大小
+        items[i].style.left = index * (itemWidth + gap) + "px";
+
+        //3. 设置这个盒子的top，  值就是数组的最小的值
+        items[i].style.top = min + gap + "px";
+
+        //4. 在最小列上加上了新增加的这个盒子的高度一级一个间隙的高度。
+        arr[index] = min + gap + items[i].offsetHeight;
+      }
+    }
+
+    render();
+
+
+    //给窗口注册resize事件
+    window.onresize = function () {
+      render();
+    }
+
+  }
+
+
+
+
+</script>
+</body>
+</html>
